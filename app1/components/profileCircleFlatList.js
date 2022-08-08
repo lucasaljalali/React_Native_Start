@@ -87,16 +87,16 @@ const users = [
 const styles = StyleSheet.create({
     
     mainContainer: {
-        width: '90%',
+        width: '100%',
         alignItems: 'center',
-        justifyContent: 'center',        
+        justifyContent: 'center',
     },
 
     secondaryContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginEnd: 10,
-        marginVertical: 15,
+        marginHorizontal: 5,
+        marginVertical: 20,
     },
 
     circleContainer: {
