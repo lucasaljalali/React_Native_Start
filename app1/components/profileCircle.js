@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 
 export default function ProfileImage(){
     return(
-        <ScrollView horizontal={true} style={styles.container}>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.container}>
             
             <View style={styles.profileContainer}>
                 <View style={styles.circleContainer}>
