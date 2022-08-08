@@ -1,9 +1,16 @@
 import react from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Alert, Button } from 'react-native';
 import Comp1 from './components/comp1';
 import Comp2 from './components/comp2';
 import ProfileImage from './components/profileCircle';
+
+
+const doble = n=>n*2;
+const sum = (n1,n2)=>n1+n2;
+
+const errorMsg = ()=>{Alert.alert('Error', 'This is a error message')}
+
 
 export default function App() {
   return (
@@ -25,6 +32,11 @@ export default function App() {
 
       <ProfileImage/>
 
+      <Text style={{ backgroundColor: 'white', marginBottom: 10 }}>{doble(10)}</Text>
+      <Text style={{ backgroundColor: 'white', marginBottom: 10 }}>{sum(20,40)}</Text>
+
+      <Button title='Press for Error' onPress={errorMsg}/>
+
     </View>
   );
 };
@@ -36,6 +48,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingTop: 100,
+    paddingBottom: 50,
     backgroundColor: '#222',
   },
 
