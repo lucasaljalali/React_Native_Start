@@ -31,6 +31,16 @@ const products = [
         id: '6',
         desc: ['Hat', 'Gray']
     },
+
+    {
+        id: '7',
+        desc: ['Car', 'Green']
+    },
+
+    {
+        id: '8',
+        desc: ['Bus', 'Red']
+    },
 ]
 
 
@@ -53,7 +63,6 @@ export default function Comp2FlatList(){
 };
 
 
-
 const styles = StyleSheet.create({
     mainContainer: {
         width: '90%',
@@ -62,7 +71,7 @@ const styles = StyleSheet.create({
 
     secondaryContainer: {
         backgroundColor: '#66b3ff',
-        width: 125,
+        width: 150,
         height: 45,
         borderRadius: 50,
         alignItems: 'center',

@@ -5,6 +5,8 @@ import Comp1 from './components/comp1';
 import Comp2 from './components/comp2';
 import ProfileImage from './components/profileCircle';
 import Comp2FlatList from './components/comp2FlatList';
+import ProfileCircleFlatList from './components/profileCircleFlatList';
+import { LinearGradient } from "expo-linear-gradient";
 
 
 const doble = n=>n*2;
@@ -23,13 +25,13 @@ export default function App() {
       <Image source={require('./assets/logo.png')} style={styles.logoImage}/>
       
       <Comp2FlatList/>
-      
-      <ProfileImage/>
 
+      <ProfileCircleFlatList/>
+      
       <Text style={{ backgroundColor: 'white', marginBottom: 10 }}>{doble(10)}</Text>
       <Text style={{ backgroundColor: 'white', marginBottom: 10 }}>{sum(20,40)}</Text>
-
-      <Button title='Press for Error' onPress={errorMsg}/>
+      
+      <Button title='Press for Error' color='red' onPress={errorMsg}/>
 
     </View>
   );
@@ -52,5 +54,4 @@ const styles = StyleSheet.create({
     marginBottom: 25,
     overflow: 'hidden',
   },
-
 });
