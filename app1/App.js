@@ -8,6 +8,7 @@ import FcCompUseState from './components/FcCompUseState';
 import Car from './components/ClassCompUseState';
 import Calcs from './components/FcCalcs'
 import ErrorBtn from './components/errorBtn'
+import InputName from './components/TextInputBox';
 
 export default function App() {
   
@@ -30,6 +31,7 @@ export default function App() {
           <ErrorBtn/>
           <Car name='Polo'/>
           <FcCompUseState name='Golf'/>
+          <InputName/>
         
         </View>  
       :
