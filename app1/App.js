@@ -9,6 +9,7 @@ import Car from './components/ClassCompUseState';
 import Calcs from './components/FcCalcs'
 import ErrorBtn from './components/errorBtn'
 import InputName from './components/TextInputBox';
+import Touchable from './components/Touchable';
 
 export default function App() {
   
@@ -27,11 +28,11 @@ export default function App() {
           <Comp1/>
           <Comp2FlatList/>
           <ProfileCircleFlatList/>
-          <Calcs/>
           <ErrorBtn/>
           <Car name='Polo'/>
           <FcCompUseState name='Golf'/>
           <InputName/>
+          <Touchable/>
         
         </View>  
       :
