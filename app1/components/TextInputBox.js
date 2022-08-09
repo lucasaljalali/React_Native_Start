@@ -7,9 +7,9 @@ export default function InputName(){
     
     return(
         <View>
-            <Text style={{color:'#fff',}}>Type your name:</Text>
             <TextInput 
-                value={name}
+                placeholder={"Type your name here"}
+                placeholderTextColor={'#fff'}
                 onChangeText={text=>setName(text)}
                 autoCapitalize='words'
                 multiline= {false}
