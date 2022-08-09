@@ -1,6 +1,6 @@
 import react, {useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, Button, ImageBackground, SafeAreaView } from 'react-native';
 import Comp1 from './components/comp1';
 import Comp2FlatList from './components/comp2FlatList';
 import ProfileCircleFlatList from './components/profileCircleFlatList';
@@ -15,7 +15,7 @@ export default function App() {
   
   return (
     
-    <View style={styles.mainContainer}>
+    <SafeAreaView style={styles.mainContainer}>
       <StatusBar style='auto'/>
       
       <ImageBackground source={require('./assets/bg1gray.jpg')} style={styles.backgroundImage}>
@@ -28,8 +28,8 @@ export default function App() {
           <ProfileCircleFlatList/>
           <Calcs/>
           <ErrorBtn/>
-          <FcCompUseState name='Golf'/>
           <Car name='Polo'/>
+          <FcCompUseState name='Golf'/>
         
         </View>  
       :
@@ -40,7 +40,7 @@ export default function App() {
 
       </ImageBackground>
     
-    </View>
+    </SafeAreaView>
   );
 };
 
