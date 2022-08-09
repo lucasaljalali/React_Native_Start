@@ -31,16 +31,6 @@ const products = [
         id: '6',
         desc: ['Hat', 'Gray']
     },
-
-    {
-        id: '7',
-        desc: ['Car', 'Green']
-    },
-
-    {
-        id: '8',
-        desc: ['Bus', 'Red']
-    },
 ]
 
 
@@ -48,6 +38,7 @@ export default function Comp2FlatList(){
     return(
         <View style={styles.mainContainer}>
             <FlatList 
+                scrollEnabled={false}
                 numColumns={2}
                 data={products}
                 keyExtractor={item=>item.id}
@@ -66,7 +57,8 @@ export default function Comp2FlatList(){
 const styles = StyleSheet.create({
     mainContainer: {
         width: '90%',
-        alignItems: 'center',        
+        alignItems: 'center',       
+        overflow: 'hidden',
     },
 
     secondaryContainer: {

@@ -1,11 +1,14 @@
 import react from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 
 export default function Comp1(){
     return(
         <View style={styles.container}> 
-        <Text style={styles.text1}>My fist App</Text>
-        <Text style={styles.text2}>I will create a simple App</Text>
+            <Image source={require('../assets/logo.png')} style={styles.logoImage}/>
+            <View style={styles.textContainer}>    
+                <Text style={styles.text1}>My fist App</Text>
+                <Text style={styles.text2}>I will create a simple App</Text>
+            </View>    
         </View>
     )
 };
@@ -13,22 +16,36 @@ export default function Comp1(){
 
 const styles = StyleSheet.create({
     container: {
+        flexDirection: 'row',
         backgroundColor: '#333',
-        width: 300,
-        height: 60,
+        width: '80%',
+        height: 45,
         borderRadius: 50,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 40,
+        marginVertical: 10,
+        marginHorizontal: 10,
+    },
+
+    logoImage: {
+        resizeMode: 'contain', 
+        height: 35,
+        width: 35,
+    },
+
+    textContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginHorizontal: 20,
     },
 
     text1: {
         color: '#888',
-        fontSize: 20,
+        fontSize: 13,
     },
 
     text2: {
         color: '#fff',
-        fontSize: 15,
+        fontSize: 11,
     },
 });
