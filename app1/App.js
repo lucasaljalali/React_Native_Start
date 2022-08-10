@@ -10,6 +10,7 @@ import Calcs from './components/FcCalcs'
 import ErrorBtn from './components/errorBtn'
 import InputName from './components/TextInputBox';
 import Touchable from './components/Touchable';
+import ModalExample from './components/Modal';
 
 export default function App() {
   
@@ -29,7 +30,7 @@ export default function App() {
           <Comp2FlatList/>
           <ProfileCircleFlatList/>
           <ErrorBtn/>
-          <Car name='Polo'/>
+          <ModalExample/>
           <FcCompUseState name='Golf'/>
           <InputName/>
           <Touchable/>
