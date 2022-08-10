@@ -1,5 +1,5 @@
-import React from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, FlatList, RefreshControl } from "react-native";
 
 const products = [
     {
@@ -31,14 +31,34 @@ const products = [
         id: '6',
         desc: ['Hat', 'Gray']
     },
+
+    {
+        id: '7',
+        desc: ['Car', 'Silver']
+    },
+
+    {
+        id: '8',
+        desc: ['Bus', 'Gold']
+    },
 ]
 
 
 export default function Comp2FlatList(){
+    
+    const [refreshing, setRefreshing] = useState(false);
+    const OnRefresh = ()=>{
+            setRefreshing(true); 
+            //here should be everything I want to do when refreshing
+            setTimeout(()=>{setRefreshing(false)}, 1500);
+            //instead of setTimeout I can put "setRefreshing(false)"
+        };
+    
     return(
         <View style={styles.mainContainer}>
             <FlatList 
-                scrollEnabled={false}
+                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={OnRefresh}/>}
+                scrollEnabled={true}
                 numColumns={2}
                 data={products}
                 keyExtractor={item=>item.id}
@@ -57,6 +77,7 @@ export default function Comp2FlatList(){
 const styles = StyleSheet.create({
     mainContainer: {
         width: '90%',
+        height: 120,
         alignItems: 'center',       
         overflow: 'hidden',
     },

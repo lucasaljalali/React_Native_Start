@@ -4,7 +4,7 @@ import {View,Text,Button,Modal,StyleSheet} from 'react-native';
 
 export default function ModalExample(){
     
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState(false);
 
     return(
         <View>

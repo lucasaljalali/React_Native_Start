@@ -5,8 +5,6 @@ import Comp1 from './components/comp1';
 import Comp2FlatList from './components/comp2FlatList';
 import ProfileCircleFlatList from './components/profileCircleFlatList';
 import FcCompUseState from './components/FcCompUseState';
-import Car from './components/ClassCompUseState';
-import Calcs from './components/FcCalcs'
 import ErrorBtn from './components/errorBtn'
 import InputName from './components/TextInputBox';
 import Touchable from './components/Touchable';
@@ -29,8 +27,10 @@ export default function App() {
           <Comp1/>
           <Comp2FlatList/>
           <ProfileCircleFlatList/>
-          <ErrorBtn/>
-          <ModalExample/>
+            <View style={styles.buttonsContainer}>  
+              <ErrorBtn/>
+              <ModalExample/>
+            </View>  
           <FcCompUseState name='Golf'/>
           <InputName/>
           <Touchable/>
@@ -75,5 +75,13 @@ const styles = StyleSheet.create({
     alignItems:'center',
     justifyContent: 'center',
     width: '100%',
+  },
+
+  buttonsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems:'center',
+    justifyContent: 'space-evenly',
+    width: '90%',
   },
 });
