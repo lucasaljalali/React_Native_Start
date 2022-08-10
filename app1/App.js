@@ -13,11 +13,12 @@ import ModalExample from './components/Modal';
 export default function App() {
   
   const [on, setOn] = useState(true);
+  const [color, setColor] = useState('gray');
   
   return (
     
     <SafeAreaView style={styles.mainContainer}>
-      <StatusBar style='auto'/>
+      <StatusBar backgroundColor={color} animated={true}/>
       
       <ImageBackground source={require('./assets/bg1gray.jpg')} style={styles.backgroundImage}>
       
@@ -34,6 +35,10 @@ export default function App() {
           <FcCompUseState name='Golf'/>
           <InputName/>
           <Touchable/>
+          <View style={styles.buttonsContainer}>
+            <Button title={'Red Status Bar'} color={'red'} onPress={()=>setColor('red')}/>
+            <Button title={'Gray Status Bar'} color={'gray'} onPress={()=>setColor('gray')}/>
+          </View>
         
         </View>  
       :
