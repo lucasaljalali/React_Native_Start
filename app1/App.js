@@ -9,14 +9,18 @@ import ErrorBtn from './components/errorBtn'
 import InputName from './components/TextInputBox';
 import Touchable from './components/Touchable';
 import ModalExample from './components/Modal';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import SecondPage from './components/SecondPage';
 
-export default function App() {
+const Stack = createStackNavigator();
+
+function HomeScreen({navigation}){
   
   const [on, setOn] = useState(true);
   const [color, setColor] = useState('gray');
-  
-  return (
-    
+
+  return(
     <SafeAreaView style={styles.mainContainer}>
       <StatusBar backgroundColor={color} animated={true}/>
       
@@ -39,6 +43,7 @@ export default function App() {
             <Button title={'Red Status Bar'} color={'red'} onPress={()=>setColor('red')}/>
             <Button title={'Gray Status Bar'} color={'gray'} onPress={()=>setColor('gray')}/>
           </View>
+          <Button title='Second Page' onPress={()=>navigation.navigate('Second Page')}/>
         
         </View>  
       :
@@ -50,7 +55,39 @@ export default function App() {
       </ImageBackground>
     
     </SafeAreaView>
-  );
+  )
+};
+
+function SecondScreen({navigation}){
+  return(
+    <SecondPage/>
+  )
+};
+
+export default function App1(){
+  return(
+    <NavigationContainer>
+      <Stack.Navigator 
+        initialRouteName='Home Page'
+        screenOptions={{
+          headerStyle: {backgroundColor: '#222',},
+          headerTintColor: '#999',
+          headerTitleStyle: {fontWeight: 'bold',},
+        }}
+      >
+        <Stack.Screen
+          name='Home Page'
+          component={HomeScreen}
+          options={{title:'Home Screen'}}
+        />
+        <Stack.Screen
+          name='Second Page'
+          component={SecondScreen}
+          options={{title:'Second Screen'}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 };
 
 

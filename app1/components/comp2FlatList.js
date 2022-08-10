@@ -57,6 +57,7 @@ export default function Comp2FlatList(){
     return(
         <View style={styles.mainContainer}>
             <FlatList 
+                showsHorizontalScrollIndicator={false}
                 refreshControl={<RefreshControl refreshing={refreshing} onRefresh={OnRefresh}/>}
                 scrollEnabled={true}
                 numColumns={2}
