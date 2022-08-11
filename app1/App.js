@@ -94,6 +94,11 @@ export default function App(){
           headerStyle: {backgroundColor: '#222',},
           headerTintColor: '#999',
           headerTitleStyle: {fontWeight: 'bold',},
+          headerRight: ()=>(
+            <View style={{flexDirection: 'row', width:150, justifyContent:'space-evenly'}}>
+              <Button title="Don't Press" color='#999' onPress={()=>alert('Uhm.. you are curious!')}/>
+            </View>
+          )
         }}
       >
         <Stack.Screen
