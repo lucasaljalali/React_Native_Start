@@ -25,7 +25,7 @@ export default function CalcBMI() {
     <SafeAreaView style={styles.container}>
 
       <View style={styles.secContainer}>
-        <Text>BMI Calculator</Text>
+        <Text>alJalali's BMI Calculator</Text>
       </View>
 
       <View style={styles.secContainer}>

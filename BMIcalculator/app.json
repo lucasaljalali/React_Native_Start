@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "CalcIMC",
-    "slug": "CalcIMC",
+    "name": "alJalali's BMI Calculator",
+    "slug": "alJalali's BMI Calculator",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/iconBMI.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/102.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
