@@ -8,6 +8,7 @@ export default function CalcBMI() {
   const [result, setResult] = useState(0);
 
   function Calc(){
+    
     if(weight==0 || !weight){
       alert('inform your weight')
       return
@@ -28,23 +29,23 @@ export default function CalcBMI() {
       </View>
 
       <View style={styles.secContainer}>
-        <Text>Type your weight:</Text>
+        <Text>Type your weight (kg):</Text>
         <TextInput
         style={styles.txtInput}
         autoFocus={true}
         keyboardType={'numeric'}
-        onChangeText={text=>setWeight(text)}
+        onChangeText={text=>setWeight(text.replace(/,/g, '.'))}
         >  
         </TextInput>
       </View>
 
       <View style={styles.secContainer}>
-        <Text>Type your height:</Text>
+        <Text>Type your height (m):</Text>
         <TextInput
         style={styles.txtInput}
         autoFocus={false}
         keyboardType={'numeric'}
-        onChangeText={text=>setHeight(text)}
+        onChangeText={text=>setHeight(text.replace(/,/g, '.'))}
         >  
         </TextInput>
       </View>
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop:StatusBar.currentHeight,
-    padding:10,
+    marginHorizontal: 20,
   },
 
   secContainer: {
