@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "alJalali's BMI Calculator",
-    "slug": "alJalali's BMI Calculator",
+    "name": "alJalali BMI Calc",
+    "slug": "alJalali-BMI-Calc",
+    "description": "This is my First App",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/iconBMI.png",
@@ -22,12 +23,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/iconBMI.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/iconBMI.png"
     }
   }
 }
