@@ -11,7 +11,6 @@ import Touchable from './components/Touchable';
 import ModalExample from './components/Modal';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import SecondPage from './components/SecondPage';
 
 const Stack = createStackNavigator();
 
@@ -43,7 +42,7 @@ function HomeScreen({navigation}){
             <Button title={'Red Status Bar'} color={'red'} onPress={()=>setColor('red')}/>
             <Button title={'Gray Status Bar'} color={'gray'} onPress={()=>setColor('gray')}/>
           </View>
-          <Button title='Second Page' onPress={()=>navigation.navigate('Second Page')}/>
+          <Button title='Second Page' onPress={()=>navigation.navigate('Second')}/>
         
         </View>  
       :
@@ -60,11 +59,33 @@ function HomeScreen({navigation}){
 
 function SecondScreen({navigation}){
   return(
-    <SecondPage/>
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>Hello Sir!</Text>
+      <Text>This is the Second Screen</Text>
+      <Button title='Back' onPress={()=>navigation.goBack()}/>
+      <Button title='Third Page' onPress={()=>navigation.navigate('Third', {Test:100, AnotherTest: 'comming from last page button'} )}/>
+    </View>
   )
 };
 
-export default function App1(){
+function ThirdScreen({route, navigation}){
+
+  const Test = route.params.Test;
+  const AnotherTest = route.params.AnotherTest;
+
+  return(
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>Hello again Sir!</Text>
+      <Text>This is the Third Screen</Text>
+      <Text>This came from last page button: {Test}.</Text>
+      <Text>This too: {AnotherTest}.</Text>
+      <Button title='Back' onPress={()=>navigation.goBack()}/>
+      <Button title='Home' onPress={()=>navigation.navigate('Home')}/>
+    </View>
+  )
+};
+
+export default function App(){
   return(
     <NavigationContainer>
       <Stack.Navigator 
@@ -76,14 +97,19 @@ export default function App1(){
         }}
       >
         <Stack.Screen
-          name='Home Page'
+          name='Home'
           component={HomeScreen}
           options={{title:'Home Screen'}}
         />
         <Stack.Screen
-          name='Second Page'
+          name='Second'
           component={SecondScreen}
           options={{title:'Second Screen'}}
+        />
+        <Stack.Screen
+          name='Third'
+          component={ThirdScreen}
+          options={{title:'Third Screen'}}
         />
       </Stack.Navigator>
     </NavigationContainer>
