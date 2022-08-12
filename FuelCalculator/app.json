@@ -1,13 +1,14 @@
 {
   "expo": {
-    "name": "FuelCalculator",
-    "slug": "FuelCalculator",
+    "name": "alJalali Fuel Calculator",
+    "slug": "alJalali-Fuel-Calculator",
+    "description": "App to compare which fuel is cheaper to use.",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/iconFinal.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/102.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,12 +23,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/iconFinal.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/iconFinal.png"
     }
   }
 }
