@@ -1,5 +1,4 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
 import GameScreen from './components/gameScreen';
 import SettingScreen from './components/settingScreen';
 import { NavigationContainer } from '@react-navigation/native';
@@ -10,7 +9,6 @@ const Menus=createBottomTabNavigator();
 export default function App() {
   return(
     <NavigationContainer theme={menuTheme}>
-      <StatusBar style="auto" />
       <Menus.Navigator initialRouteName='Game'>
         <Menus.Screen name='Game' component={GameScreen} />
         <Menus.Screen name='Settings' component={SettingScreen} />

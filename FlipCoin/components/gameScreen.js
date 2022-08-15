@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, Image, TouchableHighlight } from 'react-native';
+import {StatusBar} from 'expo-status-bar';
 import Globals from "./globals";
 
 
@@ -40,7 +41,7 @@ export default function GameScreen() {
         iCoin=2
       }
       setCurrentCoin(coins[iCoin])
-      await waiting(timeOfFlips)
+      await waiting((timeOfFlips/8) > 50 ? (timeOfFlips/8) : 50)
     };
     let res=Math.floor(Math.random()*10)+1;
     (res<=5 ? res=0 : res=1);
@@ -49,6 +50,7 @@ export default function GameScreen() {
 
   return (
     <View style={styles.mainContainer}>
+      <StatusBar style="auto" />
       <Text style={styles.title}>{Globals.title}</Text>
       <Image source={currentCoin} style={styles.coin}/>
       <TouchableHighlight

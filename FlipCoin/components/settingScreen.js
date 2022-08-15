@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Text, TextInput, View, StyleSheet } from "react-native";
+import { StatusBar } from 'expo-status-bar';
 import Globals from "./globals";
 
 
@@ -20,19 +21,19 @@ export default function SettingScreen(){
 
     return(
         <View style={styles.container}>
-            
-            <Text style={styles.txt}>Number of flips:</Text>
+            <StatusBar style="auto" />
+            <Text style={styles.txt}>Number of flips (suggested max. 5):</Text>
             <TextInput
                 style={styles.txtInput}
                 value={String(flips)}
-                onChangeText={(value)=>{setFlips(value)}}
+                onChangeText={(value)=>{SettingFlips(value)}}
             />
             
-            <Text style={styles.txt}>Waiting time:</Text>
+            <Text style={styles.txt}>Time per flip (suggested max. 1000 ms):</Text>
             <TextInput
                 style={styles.txtInput}
                 value={String(time)}
-                onChangeText={(value)=>{setTime(value)}}
+                onChangeText={(value)=>{SettingTime(value)}}
             />
             
         </View>
@@ -55,6 +56,7 @@ const styles = StyleSheet.create({
     txtInput:{
         borderWidth:1,
         borderColor:'#fff',
+        width:'70%',
         borderRadius:20,
         padding:10,
         marginVertical:20,
