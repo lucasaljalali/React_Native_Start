@@ -4,21 +4,28 @@ import SettingScreen from './components/settingScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-const Menus=createBottomTabNavigator();
+const Tabs=createBottomTabNavigator();
 
 export default function App() {
   return(
     <NavigationContainer theme={menuTheme}>
-      <Menus.Navigator initialRouteName='Game'>
-        <Menus.Screen name='Game' component={GameScreen} />
-        <Menus.Screen name='Settings' component={SettingScreen} />
-      </Menus.Navigator>
+      <Tabs.Navigator 
+        initialRouteName='Game'
+        screenOptions={{
+          headerShown: false, 
+          tabBarIconStyle:{display:'none'},
+          tabBarLabelStyle:{position:'absolute', top:0, fontSize:16, padding:5}
+        }}>
+        <Tabs.Screen name='Game' component={GameScreen} />
+        <Tabs.Screen name='Settings' component={SettingScreen} />
+      </Tabs.Navigator>
     </NavigationContainer>
   )
 };
 
 const menuTheme = {
   dark: false,
+  documentTitle: false,
   colors: {
     primary: 'rgb(255,255,255)',
     background: 'rgb(68,68,68)',
