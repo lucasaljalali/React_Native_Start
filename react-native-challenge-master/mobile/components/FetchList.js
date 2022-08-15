@@ -34,10 +34,16 @@ import { View, Text, FlatList, ActivityIndicator, StyleSheet } from 'react-nativ
 
   const styles = StyleSheet.create({
     mainContainer: {
+      borderWidth:1,
+      borderColor:'#fff',
       flex: .75,
+      width: '95%',
       backgroundColor: '#999',
       alignItems: 'center',
       justifyContent: 'center',
       marginVertical:20,
     },
+    txt:{
+
+    }
   });
