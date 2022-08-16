@@ -19,6 +19,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#999',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop:StatusBar.currentHeight,
+    paddingTop:75,
   },
 });
