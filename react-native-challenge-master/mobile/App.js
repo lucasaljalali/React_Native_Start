@@ -7,7 +7,7 @@ export default function App() {
   return (
     <View style={styles.mainContainer}>
       <StatusBar style="auto" />
-      <Text>Currencies available on MoonPay:</Text>
+      <Text>Currencies available on xzyPay:</Text>
       <FetchList/>
     </View>
   );
