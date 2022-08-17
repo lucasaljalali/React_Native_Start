@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
+import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import Screen from './components/screen';
+import Btn from './components/btn';
 
 export default function App() {
 
@@ -10,29 +12,35 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+
       <Text>alJalali Calculator</Text>
+      <Screen value={0} res={0}/>
+      <View style={styles.btnsContainer}>
+        <Btn label='AC' ac onClick={()=>{}}></Btn>
+        <Btn label='(' onClick={()=>{}}></Btn>
+        <Btn label=')' onClick={()=>{}}></Btn>
+        <Btn label='/' operation onClick={()=>{}}></Btn>
+        <Btn label='7' onClick={()=>{}}></Btn>
+        <Btn label='8' onClick={()=>{}}></Btn>
+        <Btn label='9' onClick={()=>{}}></Btn>
+        <Btn label='*' operation onClick={()=>{}}></Btn>
+        <Btn label='4' onClick={()=>{}}></Btn>
+        <Btn label='5' onClick={()=>{}}></Btn>
+        <Btn label='6' onClick={()=>{}}></Btn>
+        <Btn label='-' operation onClick={()=>{}}></Btn>
+        <Btn label='1' onClick={()=>{}}></Btn>
+        <Btn label='2' onClick={()=>{}}></Btn>
+        <Btn label='3' onClick={()=>{}}></Btn>
+        <Btn label='+' operation onClick={()=>{}}></Btn>
+        <Btn label='0' onClick={()=>{}}></Btn>
+        <Btn label='.' onClick={()=>{}}></Btn>
+        <Btn label='<-' bs onClick={()=>{}}></Btn>
+        <Btn label='=' equal onClick={()=>{}}></Btn>
 
-      <View>
-        <TextInput
-          style={styles.firstDisplay}
-          value={String(operation)}
-          onChangeText={(text)=>{setOperation(text)}}
-          keyboardType='numeric'
-        ></TextInput>
-        <TextInput
-          style={styles.firstDisplay}
-          value={String(result)}
-          keyboardType='numeric'
-        ></TextInput>
-      </View>
 
-      <TouchableHighlight 
-        style={styles.btn}
-        onPress={()=>operate()}
-      >
-        <Text>=</Text>
-      </TouchableHighlight>
-
+        
+      </View> 
+      
       <StatusBar style="auto" />
     </View>
   );
@@ -43,18 +51,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
 
-  firstDisplay:{
-    width:'75%',
-    padding:10,
-    borderWidth:1,
-    borderRadius:10,
-  },
-
-  btn:{
-    backgroundColor:'#aaa',
-    padding:20,
+  btnsContainer:{
+    flexDirection:'row',
+    flexWrap:'wrap',
   },
 });
