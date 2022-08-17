@@ -12,11 +12,14 @@ export default function App() {
   const[resultV,setResultV]=useState(states.result);
 
   function addDigit(digit){
-
+    if(digit=='+'||digit=='-'||digit=='/'||digit=='*'){states.dot=false}
+    if(digit=='.' && !states.dot){states.dot=true; states.operated=false}
+    else if(digit=='.' && states.dot){return};
+    if((digit=='+'||digit=='-'||digit=='/'||digit=='*')&&states.operated){states.screenValue=states.result; states.result=0;};
     states.screenValue=states.screenValue+digit;
-    setScreenV(states.screenValue)
-    setResultV(states.result)
-    states.operated=false
+    setScreenV(states.screenValue);
+    setResultV(states.result);
+    states.operated=false;
   };
 
   function cleanScreen(){
