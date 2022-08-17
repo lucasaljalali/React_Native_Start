@@ -1,25 +1,3 @@
-<div align="center">
-  <p>
-    <img src="assets/logo_black.svg" width="250" />
-  </p>
-  <p>
-    The new standard for fiat to crypto
-  </p>
-</div>
-
-# Take Home Test (React Native)
-
-## Overview
-
-This is a takehome test for candidates applying for a React Native developer
-position at MoonPay. It contains two sections: "Mobile", and "Follow-up" which
-together include a series of tests involving React Native, Styling, JavaScript.
-
-Feel free to solve these questions however you see fit, using whatever coding
-style or third-party libraries you think are appropriate.
-
-To start the test, simply clone this repo and make your edits locally.
-
 ## Mobile
 
 For the mobile portion of the test, use the `/mobile` folder. There are 7 features we'd like to add:
@@ -40,25 +18,3 @@ grading your design skills here.
 ### NOTE
 
 React Native must be used as the base library and the application should work in both android and iOS devices
-
-### API Information
-
-- **MoonPay API `GET /v3/currencies` endpoint:** https://api.moonpay.com/v3/currencies
-
-## Follow-up
-
-Answer the questions in the [FOLLOW-UP.md](./FOLLOW-UP.md) file.
-
-## Submitting Your Code
-
-Once you've completed the test, please compress your files (via zip or tar) and
-return them as a link or email attachment in reply to your test invite. We'd like the
-code in your submission to remain private, so please avoid committing or pushing
-the code publicly.
-
-**Do not include node_modules or .git in your submission**
-
-Once we receive it, a member of our team will review and we'll get back to you
-as soon as possible.
-
-Thanks!
