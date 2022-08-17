@@ -26,24 +26,24 @@ const styles = StyleSheet.create({
     backgroundColor:'#222',
     color:'#fff',
     borderWidth:1,
-    borderColor:'#777',
+    borderColor:'#666',
     textAlign:'center',
   },
 
   btnOper:{
-    color:'#0f0',
+    color:'#cc6900',
   },
 
   btnEqual:{
-    color:'#f00',
+    color:'#ffcc66',
   },
 
   btnAC:{
-    color:'#ff0',
+    color:'#993300',
   },
 
   btnBS:{
-    color:'#0ff',
+    color:'#804000',
   },
 
   btnDoble:{
