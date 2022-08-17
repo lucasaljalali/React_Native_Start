@@ -2,7 +2,7 @@
 
 For the mobile portion of the test, use the `/mobile` folder. There are 7 features we'd like to add:
 
-1. Fetch and display the list of currencies available on MoonPay (see endpoint below).
+1. Fetch and display the list of currencies available on ***(see endpoint below).
 2. Add styles to create a responsive layout that will display one column on mobile devices and two columns on tablet devices.
 3. Add a toggle to control if currencies not supported in the US should be displayed.
 4. Add a toggle to control if currencies not available in test mode should be displayed.
