@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import AsyncStorageCourse from '@react-native-async-storage/async-storage';
+import AsyncStorageAnotherOne from '@react-native-async-storage/async-storage';
+import Geo from './components/GeoLocation';
 
 export default function App(){
 
@@ -26,6 +28,7 @@ export default function App(){
     <View style={styles.mainContainer}>
       <Text>Local Storage - Async-Storage</Text>
       <Text>Course of {course}</Text>
+      <Geo/>
     </View>
   )
 };
