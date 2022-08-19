@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { FlatList, Text, View } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 import { Card, CardProps } from '../../components/Card';
 import { HeaderHome } from '../../components/HeaderHome';
@@ -12,9 +12,19 @@ import { Button } from '../../components/Button';
 export function Home() {
   const [data, setData] = useState<CardProps[]>([]);
 
+  const { getItem, setItem } = useAsyncStorage("@passregister:passwords");
+
   async function handleFetchData() {
-    const response = await AsyncStorage.getItem("@passregister:passwords");
+    const response = await /*AsyncStorage.*/getItem(/*"@passregister:passwords"*/);
     const data = response ? JSON.parse(response) : [];
+    setData(data);
+  };
+
+  async function handleRemoveData(id: string) {
+    const response = await /*AsyncStorage.*/getItem(/*"@passregister:passwords"*/);
+    const previousData = response ? JSON.parse(response) : [];
+    const data = previousData.filter((item: CardProps) => item.id !== id);
+    setItem(JSON.stringify(data));
     setData(data);
   };
 
@@ -44,7 +54,7 @@ export function Home() {
         renderItem={({ item }) =>
           <Card
             data={item}
-            onPress={() => {}}
+            onPress={() => {handleRemoveData(item.id)}}
           />
         }
       />

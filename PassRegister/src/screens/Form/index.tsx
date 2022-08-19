@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
 import Toast from 'react-native-toast-message';
 import uuid from 'react-native-uuid';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 import { styles } from './styles';
 
@@ -15,6 +15,8 @@ export function Form() {
   const [name, setName] = useState('');
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
+  // create/declare AsyncStorage getItem and setItem for this specific data collection
+  const { getItem, setItem } = useAsyncStorage("@passregister:passwords");
 
   async function handleNew(){
     // will try to execute everything below
@@ -23,13 +25,13 @@ export function Form() {
     const id = uuid.v4();
     // create/declare new data with the states created by inputs 
     const newData = {id, name, user, password,};
-    // gets all previous data
-    const response = await AsyncStorage.getItem("@passregister:passwords");
+    // gets all previous data (commented is what i can erase by using useAsyncStorage instead of just AsyncStorage)
+    const response = await /*AsyncStorage.*/getItem(/*"@passregister:passwords"*/);
     const previousData = response ? JSON.parse(response) : [];
     // create/declare a new array adding new data to previous data 
     const data = [...previousData, newData];
     // gets the new array and push to local storage (AsyncStorage)
-    await AsyncStorage.setItem('@passregister:passwords', JSON.stringify(data));
+    await /*AsyncStorage.*/setItem(/*'@passregister:passwords',*/ JSON.stringify(data));
     // call the success message using package Toast
     Toast.show({type:'success', text1:'Successfully registered!'});
     // if gets a error...
