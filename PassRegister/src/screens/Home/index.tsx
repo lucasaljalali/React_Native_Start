@@ -17,11 +17,11 @@ export function Home() {
 
       <View style={styles.listHeader}>
         <Text style={styles.title}>
-          Suas senhas
+          Your Passwords
         </Text>
 
         <Text style={styles.listCount}>
-          {`${data.length} ao total`}
+          {`${data.length} in total`}
         </Text>
       </View>
 
@@ -40,7 +40,7 @@ export function Home() {
 
       <View style={styles.footer}>
         <Button
-          title="Limpar lista"
+          title="Clean list"
         />
       </View>
     </View>

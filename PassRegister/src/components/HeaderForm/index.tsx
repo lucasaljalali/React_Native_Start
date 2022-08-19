@@ -22,7 +22,7 @@ export function HeaderForm() {
       </TouchableOpacity>
 
       <Text style={styles.title}>
-        Cadastro
+        Register
       </Text>
     </View>
   );
