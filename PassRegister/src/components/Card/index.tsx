@@ -38,6 +38,10 @@ export function Card({ data, onPress }: Props) {
             {data.name}
           </Text>
 
+          <Text style={styles.email}>
+                {data.user}
+              </Text>
+
           {
             passwordIsVisible
               ?
@@ -45,9 +49,7 @@ export function Card({ data, onPress }: Props) {
                 {data.password}
               </Text>
               :
-              <Text style={styles.email}>
-                {data.user}
-              </Text>
+              <Text></Text>
           }
         </View>
       </View>

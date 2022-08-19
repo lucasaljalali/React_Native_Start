@@ -14,6 +14,8 @@ export function Home() {
 
   const { getItem, setItem } = useAsyncStorage("@passregister:passwords");
 
+  const [isVisible, setIsVisible] = useState(true);
+
   async function handleFetchData() {
     const response = await /*AsyncStorage.*/getItem(/*"@passregister:passwords"*/);
     const data = response ? JSON.parse(response) : [];
@@ -26,6 +28,10 @@ export function Home() {
     const data = previousData.filter((item: CardProps) => item.id !== id);
     setItem(JSON.stringify(data));
     setData(data);
+  };
+
+  function IsVisible() {
+    setIsVisible(prevState => !prevState);
   };
 
   useFocusEffect(useCallback(()=>{
@@ -51,7 +57,7 @@ export function Home() {
         keyExtractor={item => item.id}
         style={styles.list}
         contentContainerStyle={styles.listContent}
-        renderItem={({ item }) =>
+        renderItem={ !isVisible ? null : ({ item }) =>
           <Card
             data={item}
             onPress={() => {handleRemoveData(item.id)}}
@@ -61,7 +67,8 @@ export function Home() {
 
       <View style={styles.footer}>
         <Button
-          title="Clean list"
+          title="Show/Hide all"
+          onPress={IsVisible}
         />
       </View>
     </View>
