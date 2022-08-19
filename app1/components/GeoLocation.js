@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
-import Location from 'react-native-geolocation-service';
+
 
 export default function Geo(){
 

@@ -1,14 +1,13 @@
 {
   "expo": {
-    "name": "alJalali Test 1",
-    "slug": "alJalali-Test-1",
-    "description": "This is my first React Native Test",
+    "name": "app1-copy",
+    "slug": "app1-copy",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/iconNina.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splashLucas.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -23,12 +22,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/iconNina.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/iconNina.png"
+      "favicon": "./assets/favicon.png"
     }
   }
 }

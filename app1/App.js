@@ -22,7 +22,7 @@ export default function App(){
   Store('03', 'C++')
   Store('04', 'HTML + CSS')
 
-  Get('04')  
+  Get('01')  
 
   return(
     <View style={styles.mainContainer}>

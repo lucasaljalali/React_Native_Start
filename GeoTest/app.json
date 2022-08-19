@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "GeoTest",
+    "slug": "GeoTest",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
