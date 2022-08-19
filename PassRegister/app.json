@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "savepass",
-    "slug": "savepass",
-    "version": "1.0.0",
+    "name": "alJalali Save Pass",
+    "slug": "alJalali-Save-Pass",
+    "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/finalIcon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/102.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,12 +21,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/finalIcon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/finalIcon.png"
     }
   }
 }
