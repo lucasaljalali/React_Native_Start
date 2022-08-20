@@ -1,9 +1,10 @@
+import { Doctor } from "../../components/Doctor"
 import { Container, Text } from "./styles"
 
 export function Home(){
     return(
         <Container>
-            <Text>HOME</Text>
+            <Doctor />
         </Container>
     )
 }
