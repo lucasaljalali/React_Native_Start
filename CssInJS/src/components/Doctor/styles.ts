@@ -1,6 +1,8 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.TouchableOpacity`
+export const Container = styled.TouchableOpacity.attrs({
+    activeOpacity: 0.5
+})`
     width: 200px;
     padding: 22px;
     border-radius: 7px;
