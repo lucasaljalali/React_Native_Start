@@ -19,7 +19,7 @@ export default function HomeScreen({navigation}){
       <SafeAreaView style={styles.mainContainer}>
         <StatusBar backgroundColor={color} animated={true}/>
         
-        <ImageBackground source={require('../assets/bg1gray.jpg')} style={styles.backgroundImage}>
+        <ImageBackground>
         
         {on?
           <View style={styles.secondaryContainer}>

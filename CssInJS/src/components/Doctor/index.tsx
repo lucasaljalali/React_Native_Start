@@ -8,7 +8,7 @@ export function Doctor(){
             
             <Name>Lucas al Jalali</Name>
             
-            <Specialist>Neurologist</Specialist>
+            <Specialist>Programador</Specialist>
 
         </Container>
     )

@@ -25,5 +25,5 @@ export const Name = styled.Text`
 
 export const Specialist = styled.Text`
     font-size: 12px;
-    color: ${({ theme }) => theme.COLORS.TEXT_PRIMARY};
+    color: ${({ theme }) => theme.COLORS.TEXT_SECONDARY};
 `;
