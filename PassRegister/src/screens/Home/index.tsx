@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { Alert, FlatList, Text, View } from 'react-native';
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 import { Card, CardProps } from '../../components/Card';
@@ -29,6 +29,11 @@ export function Home() {
     setItem(JSON.stringify(data));
     setData(data);
   };
+
+  function showConfirm(id: string){
+    return Alert.alert('Delete', 'Are you sure you want to delete this password?',
+      [{text:'Yes', onPress: ()=> {handleRemoveData(id)}}, {text:'No',}])
+  }
 
   function IsVisible() {
     setIsVisible(prevState => !prevState);
@@ -60,7 +65,7 @@ export function Home() {
         renderItem={ !isVisible ? null : ({ item }) =>
           <Card
             data={item}
-            onPress={() => {handleRemoveData(item.id)}}
+            onPress={() => {showConfirm(item.id)}}
           />
         }
       />
