@@ -3,12 +3,19 @@ import { KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
 import Toast from 'react-native-toast-message';
 import uuid from 'react-native-uuid';
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
-
 import { styles } from './styles';
-
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { HeaderForm } from '../../components/HeaderForm';
+import * as yup from 'yup';
+import { string } from 'yup/lib/locale';
+
+const schema = yup.object().shape({
+  id: yup.string(),
+  name: yup.string().required('Inform the service name'),
+  user: yup.string().required('Inform your username or e-mail'),
+  password: yup.string().required('Inform your password'),
+});
 
 export function Form() {
   
@@ -25,6 +32,8 @@ export function Form() {
     const id = uuid.v4();
     // create/declare new data with the states created by inputs 
     const newData = {id, name, user, password,};
+    // validate the form
+    await schema.validate(newData, { abortEarly: false });
     // gets all previous data (commented is what i can erase by using useAsyncStorage instead of just AsyncStorage)
     const response = await /*AsyncStorage.*/getItem(/*"@passregister:passwords"*/);
     const previousData = response ? JSON.parse(response) : [];
@@ -35,13 +44,16 @@ export function Form() {
     // call the success message using package Toast
     Toast.show({type:'success', text1:'Successfully registered!'});
     // if gets a error...
-    }catch(error){
-    //shows the error in console
-      console.log(error);
-    // call the error message using package Toast  
-      Toast.show({type:'error', text1:'Sorry, could not register.'});
-    }
+    }catch(error: any){
+      const listOfErrors = error.errors
+    //shows errors in console  
+    console.log(listOfErrors);
+    // call the error message using package Toast 
+      Toast.show({type:'error', text1: listOfErrors[0]});
+      }
   };
+
+
 
 
   return (
