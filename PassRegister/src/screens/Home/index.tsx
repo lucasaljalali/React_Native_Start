@@ -16,6 +16,7 @@ export function Home() {
 
   const [isVisible, setIsVisible] = useState(true);
 
+
   async function handleFetchData() {
     const response = await /*AsyncStorage.*/getItem(/*"@passregister:passwords"*/);
     const data = response ? JSON.parse(response) : [];
@@ -65,7 +66,7 @@ export function Home() {
         renderItem={ !isVisible ? null : ({ item }) =>
           <Card
             data={item}
-            onPress={() => {showConfirm(item.id)}}
+            onPressRemove={() => {showConfirm(item.id)}}
           />
         }
       />

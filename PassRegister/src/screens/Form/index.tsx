@@ -8,7 +8,6 @@ import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { HeaderForm } from '../../components/HeaderForm';
 import * as yup from 'yup';
-import { string } from 'yup/lib/locale';
 
 const schema = yup.object().shape({
   id: yup.string(),

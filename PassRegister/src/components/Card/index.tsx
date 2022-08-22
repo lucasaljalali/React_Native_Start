@@ -12,10 +12,10 @@ export type CardProps = {
 }
 type Props = {
   data: CardProps;
-  onPress: () => void;
+  onPressRemove: () => void;
 }
 
-export function Card({ data, onPress }: Props) {
+export function Card({ data, onPressRemove, }: Props) {
   const [passwordIsVisible, setPasswordIsVisible] = useState(false);
 
   function togglePasswordIsVisible() {
@@ -56,7 +56,7 @@ export function Card({ data, onPress }: Props) {
 
       <TouchableOpacity
         style={styles.button}
-        onPress={onPress}
+        onPress={onPressRemove}
       >
         <MaterialIcons
           name="delete"
