@@ -14,8 +14,6 @@ export function Home() {
 
   const { getItem, setItem } = useAsyncStorage("@passregister:passwords");
 
-  const [isVisible, setIsVisible] = useState(true);
-
 
   async function handleFetchData() {
     const response = await /*AsyncStorage.*/getItem(/*"@passregister:passwords"*/);
@@ -36,10 +34,31 @@ export function Home() {
       [{text:'Yes', onPress: ()=> {handleRemoveData(id)}}, {text:'No',}])
   }
 
-  function IsVisible() {
-    setIsVisible(prevState => !prevState);
+  async function setAllVisible() {
+    const response = await /*AsyncStorage.*/getItem(/*"@passregister:passwords"*/);
+    const previousData = response ? JSON.parse(response) : [];
+    const newData = previousData.map((items: CardProps) => ({
+      id: items.id,
+      name: items.name,
+      user: items.user,
+      password: items.password,
+      passVisibleState: (items.passVisibleState === 'true') ? 'false' : 'true',
+    }));
+    const data = newData;
+    setItem(JSON.stringify(data));
+    setData(data);
   };
-
+  
+  async function handleVisible(id: string) {
+    const response = await /*AsyncStorage.*/getItem(/*"@passregister:passwords"*/);
+    const previousData = response ? JSON.parse(response) : [];
+    const index = previousData.findIndex((item: CardProps) => {return item.id === id;});
+    if (index !== -1) {previousData[index].passVisibleState = (previousData[index].passVisibleState === 'true') ? 'false' : 'true'}
+    const data = previousData;
+    setItem(JSON.stringify(data));
+    setData(data);
+  };
+  
   useFocusEffect(useCallback(()=>{
     handleFetchData();
   }, []));
@@ -63,9 +82,10 @@ export function Home() {
         keyExtractor={item => item.id}
         style={styles.list}
         contentContainerStyle={styles.listContent}
-        renderItem={ !isVisible ? null : ({ item }) =>
+        renderItem={({ item }) =>
           <Card
             data={item}
+            onPressVisible={() => {handleVisible(item.id)}}
             onPressRemove={() => {showConfirm(item.id)}}
           />
         }
@@ -74,7 +94,7 @@ export function Home() {
       <View style={styles.footer}>
         <Button
           title="Show/Hide all"
-          onPress={IsVisible}
+          onPress={() => setAllVisible()}
         />
       </View>
     </View>

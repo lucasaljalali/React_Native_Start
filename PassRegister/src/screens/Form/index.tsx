@@ -21,6 +21,7 @@ export function Form() {
   const [name, setName] = useState('');
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
+  const passVisibleState = 'false';
   // create/declare AsyncStorage getItem and setItem for this specific data collection
   const { getItem, setItem } = useAsyncStorage("@passregister:passwords");
 
@@ -30,7 +31,7 @@ export function Form() {
     // create/declare id as a random id created by the package uuid
     const id = uuid.v4();
     // create/declare new data with the states created by inputs 
-    const newData = {id, name, user, password,};
+    const newData = {id, name, user, password, passVisibleState};
     // validate the form
     await schema.validate(newData, { abortEarly: false });
     // gets all previous data (commented is what i can erase by using useAsyncStorage instead of just AsyncStorage)
