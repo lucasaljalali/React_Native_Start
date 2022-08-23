@@ -37,14 +37,23 @@ export function Home() {
   async function setAllVisible() {
     const response = await /*AsyncStorage.*/getItem(/*"@passregister:passwords"*/);
     const previousData = response ? JSON.parse(response) : [];
-    const newData = previousData.map((items: CardProps) => ({
+    const anyVisible = previousData.some((items: CardProps) => {return items.passVisibleState === 'true'});
+    
+    const tempData = anyVisible ? previousData.map((items: CardProps) => ({
+      id: items.id,
+      name: items.name,
+      user: items.user,
+      password: items.password,
+      passVisibleState: 'false',
+    })) 
+    : previousData.map((items: CardProps) => ({
       id: items.id,
       name: items.name,
       user: items.user,
       password: items.password,
       passVisibleState: (items.passVisibleState === 'true') ? 'false' : 'true',
     }));
-    const data = newData;
+    const data = tempData;
     setItem(JSON.stringify(data));
     setData(data);
   };
