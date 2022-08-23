@@ -31,6 +31,7 @@ export function Card({ data, onPressRemove, onPressVisible,  }: Props) {
           name={ visible ? "visibility" : "visibility-off"}
           size={22}
           color="#888D97"
+          style={styles.icon}
         />
       </TouchableOpacity>
 

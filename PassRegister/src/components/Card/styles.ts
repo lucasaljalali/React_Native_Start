@@ -9,13 +9,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     borderColor: '#E3E3E3',
     borderWidth: 1,
-    paddingLeft: 22,
     marginBottom: 8,
     borderRadius: 4
   },
   content: {
     flex: 1,
-    padding: 22,
+    padding: 4,
   },
   title: {
     fontSize: 15,
@@ -39,5 +38,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     borderLeftWidth: 1,
     borderLeftColor: '#E3E3E3',
-  }
+  },
+  icon:{
+    padding: 22,
+  },
 });
