@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Center, Heading, FormControl, VStack, Input, Link, Button, Text, HStack, Image, KeyboardAvoidingView } from 'native-base';
 import { Keyboard, Platform, TouchableWithoutFeedback } from 'react-native';
+import { Box, Center, KeyboardAvoidingView } from 'native-base';
 
 
 export function SignUp(){
