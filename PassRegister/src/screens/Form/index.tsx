@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
+import { StatusBar ,Keyboard, KeyboardAvoidingView, Platform, ScrollView, TouchableWithoutFeedback, View } from 'react-native';
 import Toast from 'react-native-toast-message';
 import uuid from 'react-native-uuid';
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
@@ -55,42 +55,43 @@ export function Form() {
 
 
 
-
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
-    >
-      <View style={styles.content}>
-        <ScrollView>
-
-          <HeaderForm />
-
-          <View style={styles.form}>
-            <Input
-              label="Service name "
-              onChangeText={setName}
-            />
-            <Input
-              label="User or e-mail"
-              autoCapitalize="none"
-              onChangeText={setUser}
-            />
-            <Input
-              label="Password"
-              secureTextEntry
-              onChangeText={setPassword}
-            />
-          </View>
-
-          <View style={styles.footer}>
-            <Button
-              title="Save"
-              onPress={handleNew}
-            />
-          </View>
-        </ScrollView>
-      </View>
+    > 
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.content}>
+          <ScrollView>
+  
+            <HeaderForm />
+  
+            <View style={styles.form}>
+              <Input
+                label="Service name "
+                onChangeText={setName}
+              />
+              <Input
+                label="User or e-mail"
+                autoCapitalize="none"
+                onChangeText={setUser}
+              />
+              <Input
+                label="Password"
+                secureTextEntry
+                onChangeText={setPassword}
+              />
+            </View>
+  
+            <View style={styles.footer}>
+              <Button
+                title="Save"
+                onPress={handleNew}
+              />
+            </View>
+          </ScrollView>
+        </View>
+      </TouchableWithoutFeedback>
     </KeyboardAvoidingView >
   );
 }

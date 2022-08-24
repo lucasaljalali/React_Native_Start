@@ -3,14 +3,15 @@ import { getBottomSpace } from 'react-native-iphone-x-helper';
 
 export const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: '#F2F3F5',
     alignItems: 'center',
   },
   form: {
-    flex: 1,
     padding: 24,
   },
   content: {
+    flex: 1,
     width: '100%',
   },
   footer: {
