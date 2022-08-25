@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "717750563419",
+    "project_id": "eurobox-36b5a",
+    "storage_bucket": "eurobox-36b5a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:717750563419:android:6f5f67082228062228c57e",
+        "android_client_info": {
+          "package_name": "com.lucasaljalali.EuroboxApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "717750563419-90a653npr3mquuq8v3dkc0t6sfp90b6n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA14MlCAoChF7_Tfx440LaDvGS4NzAZkUA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "717750563419-90a653npr3mquuq8v3dkc0t6sfp90b6n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
