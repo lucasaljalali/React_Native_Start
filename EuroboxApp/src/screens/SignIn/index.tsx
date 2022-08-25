@@ -28,7 +28,7 @@ export function SignIn(){
                     Sign in to continue!
                   </Heading>
                 </VStack>  
-            </HStack>
+            </HStack> 
             
             <VStack space={3} mt="5">
               <FormControl>
