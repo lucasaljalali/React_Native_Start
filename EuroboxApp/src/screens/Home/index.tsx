@@ -3,7 +3,7 @@ import { Keyboard, Platform, TouchableWithoutFeedback } from "react-native";
 import { Box, Center, KeyboardAvoidingView } from 'native-base';
 
 
-export function Home() {
+export function Home({navigation}) {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}

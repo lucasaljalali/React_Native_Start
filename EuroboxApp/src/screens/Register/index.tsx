@@ -3,9 +3,12 @@ import { Alert, Keyboard, Platform, TouchableWithoutFeedback } from 'react-nativ
 import { Link, Box, Center, Heading, FormControl, VStack, Input, Button, Text, HStack, Image, KeyboardAvoidingView, Icon } from 'native-base';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 import auth from '@react-native-firebase/auth'
+import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
 
 export function Register({navigation}){
+  
+  GoogleSignin.configure({webClientId: "546038138219-3qpakj26tk2c9ktoisegqpfbjpe80so5.apps.googleusercontent.com"});
 
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -15,13 +18,32 @@ export function Register({navigation}){
   const [show, setShow] = useState(false);
 
   function handleRegister(){
+    if (email === '') { 
+      Alert.alert('Email', 'Please enter your email address.')
+    } else if (password === ''){
+      Alert.alert('Password', 'Please enter your password')
+    } else {
     //setLoading(true);
     auth()
     .createUserWithEmailAndPassword(email, password)
     .then(() => Alert.alert('Account', 'Successfully registered!'))
+    .then(() => navigation.navigate('SignIn'))
     .catch((error) => Alert.alert('Error', error.message))
     //.finally(() =>  setLoading(false));
     // ai tem que logar na home page com o usuario cadastrado
+    }
+  };
+
+  async function handleRegisterWithGoogle(){
+    const { idToken } = await GoogleSignin.signIn();
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+    console.log(googleCredential)
+    // Sign-in the user with the credential
+    return auth()
+      .signInWithCredential(googleCredential)
+      .then(() => navigation.navigate('Home'))
+      .catch((error) => Alert.alert('Error', error.message))
   };
 
   return(
@@ -97,7 +119,7 @@ export function Register({navigation}){
                 <Text fontSize="sm" color="warmGray" _dark={{ color: "warmGray.200" }}>
                   Register with Google:{" "}
                 </Text>
-                <Button size="sm" py={3} variant="ghost" onPress={()=>console.log('google')} >
+                <Button onPress={handleRegisterWithGoogle} size="sm" py={3} variant="ghost" >
                   <Icon as={Ionicons} name='logo-google' color="blue.500" size={5}/>
                 </Button>      
               </HStack>

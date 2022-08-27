@@ -17,11 +17,13 @@ export function SignIn({navigation}){
   function handleSignIn() {
     if (email === '') { 
       Alert.alert('Email', 'Please enter your email address.')
+    } else if (password === ''){
+      Alert.alert('Password', 'Please enter your password')
     } else {
     //setLoading(true);
     auth()
     .signInWithEmailAndPassword(email, password)
-    .then(() => Alert.alert('Successfully Logged In!'))
+    .then(() => navigation.navigate('Home'))
     .catch((error) => Alert.alert('Error', error.message))
     //.finally(() =>  setLoading(false));
     // ai tem que logar na home page com o usuario cadastrado
