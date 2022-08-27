@@ -1,7 +1,8 @@
 import React, { useState} from 'react';
-import { Keyboard, Platform, TouchableWithoutFeedback } from 'react-native';
+import { Alert, Keyboard, Platform, TouchableWithoutFeedback } from 'react-native';
 import { Box, Center, Heading, FormControl, VStack, Input, Link, Button, Text, HStack, Image, KeyboardAvoidingView } from 'native-base';
 import * as yup from 'yup';
+import auth from '@react-native-firebase/auth';
 
 const schema = yup.object().shape({
   email: yup.string().required('Inform your e-mail'),
@@ -12,6 +13,16 @@ export function SignIn(){
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  function handleSignIn() {
+    //setLoading(true);
+    auth()
+    .signInWithEmailAndPassword(email, password)
+    .then(() => Alert.alert('Successfully Logged!'))
+    .catch((error) => Alert.alert('Erro', error.message))
+    //.finally(() =>  setLoading(false));
+    // ai tem que logar na home page com o usuario cadastrado
+  };
 
   return(
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} h={{ base: "400px", lg: "auto" }} flex={1}>    
@@ -58,7 +69,7 @@ export function SignIn(){
                   </Link>
               </FormControl>
               
-              <Button mt="2" colorScheme="warmGray" borderRadius={50} onPress={()=>console.log(email+' '+password)}>
+              <Button mt="2" colorScheme="warmGray" borderRadius={50} onPress={handleSignIn}>
                 Sign in
               </Button>
               

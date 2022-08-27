@@ -15,7 +15,7 @@ export default function App() {
     <NativeBaseProvider>
       <NavigationContainer>
         <Stack.Navigator>
-          
+          <Stack.Screen name="SignIn" component={SignIn} options={{ headerShown:false }}/>
           <Stack.Screen name="Register" component={Register} options={{ headerShown:false }}/>      
         </Stack.Navigator>
       </NavigationContainer>        
