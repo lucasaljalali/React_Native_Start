@@ -9,19 +9,37 @@ const schema = yup.object().shape({
   password: yup.string().required('Inform your password'),
 });
 
-export function SignIn(){
+export function SignIn({navigation}){
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   function handleSignIn() {
+    if (email === '') { 
+      Alert.alert('Email', 'Please enter your email address.')
+    } else {
     //setLoading(true);
     auth()
     .signInWithEmailAndPassword(email, password)
-    .then(() => Alert.alert('Successfully Logged!'))
+    .then(() => Alert.alert('Successfully Logged In!'))
+    .catch((error) => Alert.alert('Error', error.message))
+    //.finally(() =>  setLoading(false));
+    // ai tem que logar na home page com o usuario cadastrado
+    }
+  };
+
+  function handleForgotPassword() {
+    if (email === '') { 
+      Alert.alert('Email', 'Please enter your email address.')
+    } else {
+    //setLoading(true);
+    auth()
+    .sendPasswordResetEmail(email)
+    .then(() => Alert.alert('Reset Password', 'We just sent you an email to reset your password.'))
     .catch((error) => Alert.alert('Erro', error.message))
     //.finally(() =>  setLoading(false));
     // ai tem que logar na home page com o usuario cadastrado
+    }
   };
 
   return(
@@ -64,7 +82,7 @@ export function SignIn(){
                   onChangeText={text => setPassword(text)}
                 />
                 <FormControl.ErrorMessage>invalid password</FormControl.ErrorMessage>
-                  <Link _text={{ fontSize: "xs", fontWeight: "500", color: "indigo.600" }} alignSelf="flex-end" mt="1">
+                  <Link onPress={handleForgotPassword} _text={{ fontSize: "xs", fontWeight: "500", color: "indigo.600" }} alignSelf="flex-end" mt="1">
                     Forgot Password?
                   </Link>
               </FormControl>
@@ -77,7 +95,7 @@ export function SignIn(){
                 <Text fontSize="sm" color="warmGray" _dark={{ color: "warmGray.200" }}>
                   I'm a new user.{" "}
                 </Text>
-                <Link _text={{ color: "indigo.600", fontWeight: "medium", fontSize: "sm" }}>
+                <Link onPress={()=> navigation.navigate('Register')} _text={{ color: "indigo.600", fontWeight: "medium", fontSize: "sm" }}>
                   Sign Up
                 </Link>
               </HStack>

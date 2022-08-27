@@ -1,11 +1,11 @@
 import React, { useState} from 'react';
 import { Alert, Keyboard, Platform, TouchableWithoutFeedback } from 'react-native';
-import { Box, Center, Heading, FormControl, VStack, Input, Button, Text, HStack, Image, KeyboardAvoidingView, Icon } from 'native-base';
+import { Link, Box, Center, Heading, FormControl, VStack, Input, Button, Text, HStack, Image, KeyboardAvoidingView, Icon } from 'native-base';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 import auth from '@react-native-firebase/auth'
 
 
-export function Register(){
+export function Register({navigation}){
 
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -19,7 +19,7 @@ export function Register(){
     auth()
     .createUserWithEmailAndPassword(email, password)
     .then(() => Alert.alert('Account', 'Successfully registered!'))
-    .catch((error) => Alert.alert('Erro', error.message))
+    .catch((error) => Alert.alert('Error', error.message))
     //.finally(() =>  setLoading(false));
     // ai tem que logar na home page com o usuario cadastrado
   };
@@ -29,7 +29,7 @@ export function Register(){
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <Center w="100%" flex={1}>
           <Box safeArea p="2" py="8" w="90%" maxW="290">
-          <HStack alignItems={'center'} space={2} pl={50} >
+            <HStack alignItems={'center'} space={2} pl={50} >
               <Image source={require('../../../assets/logo.png')} size={50} alt={'Eurobox logo'}/>
                 <VStack justifyContent={'center'}>
                   <Heading size='sm' fontWeight="600" color="coolGray.800" _dark={{ color: "warmGray.50" }}>
@@ -101,6 +101,9 @@ export function Register(){
                   <Icon as={Ionicons} name='logo-google' color="blue.500" size={5}/>
                 </Button>      
               </HStack>
+              <Link onPress={()=> navigation.navigate('SignIn')} justifyContent='center' p={1} _text={{ color: "indigo.600", fontWeight: "medium", fontSize: "sm" }}>
+                back to Sign In
+              </Link>
             </VStack>
           </Box>
         </Center>
