@@ -38,7 +38,8 @@ export function SignIn(){
                   autoCorrect={false} 
                   textContentType={'emailAddress'} 
                   variant="rounded"
-                  onChangeText={setEmail} 
+                  value={email}
+                  onChangeText={text => setEmail(text)}
                 />
                 <FormControl.ErrorMessage>invalid e-mail</FormControl.ErrorMessage>
               </FormControl>
@@ -48,7 +49,8 @@ export function SignIn(){
                 <Input 
                   type="password" 
                   variant="rounded"
-                  onChangeText={setPassword}
+                  value={password}
+                  onChangeText={text => setPassword(text)}
                 />
                 <FormControl.ErrorMessage>invalid password</FormControl.ErrorMessage>
                   <Link _text={{ fontSize: "xs", fontWeight: "500", color: "indigo.600" }} alignSelf="flex-end" mt="1">

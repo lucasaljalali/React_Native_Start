@@ -1327,7 +1327,7 @@
   resolved "https://registry.yarnpkg.com/@firebase/auth-types/-/auth-types-0.11.0.tgz#b9c73c60ca07945b3bbd7a097633e5f78fa9e886"
   integrity sha512-q7Bt6cx+ySj9elQHTsKulwk3+qDezhzRBFC9zlQ1BjgMueUOnGMcvqmU0zuKlQ4RhLSH7MNAdBV2znVaoN3Vxw==
 
-"@firebase/auth@0.20.5":
+"@firebase/auth@0.20.5", "@firebase/auth@^0.20.5":
   version "0.20.5"
   resolved "https://registry.yarnpkg.com/@firebase/auth/-/auth-0.20.5.tgz#a2e6c6b593d8f9cf8276a7d1f8ab5b055d65cc50"
   integrity sha512-SbKj7PCAuL0lXEToUOoprc1im2Lr/bzOePXyPC7WWqVgdVBt0qovbfejlzKYwJLHUAPg9UW1y3XYe3IlbXr77w==
