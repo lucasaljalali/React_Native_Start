@@ -26,8 +26,8 @@ export function SignInPhone({navigation}){
         navigation.navigate('Home')
       )
     } catch (error) {
-        Alert.alert('Error', error.message)
-        return setConfirm(null);
+        Alert.alert('Error', error.message);
+        setConfirm(null);
       }
   };
 
