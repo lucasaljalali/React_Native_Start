@@ -3,13 +3,10 @@ import { Alert, Keyboard, Platform, TouchableWithoutFeedback } from 'react-nativ
 import { Link, Box, Center, Heading, FormControl, VStack, Input, Button, Text, HStack, Image, KeyboardAvoidingView, Icon } from 'native-base';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 import auth from '@react-native-firebase/auth'
-import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
 
 export function Register({navigation}){
   
-  GoogleSignin.configure({webClientId: "546038138219-3qpakj26tk2c9ktoisegqpfbjpe80so5.apps.googleusercontent.com"});
-
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
@@ -34,17 +31,6 @@ export function Register({navigation}){
     }
   };
 
-  async function handleRegisterWithGoogle(){
-    const { idToken } = await GoogleSignin.signIn();
-    // Create a Google credential with the token
-    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-    console.log(googleCredential)
-    // Sign-in the user with the credential
-    return auth()
-      .signInWithCredential(googleCredential)
-      .then(() => navigation.navigate('Home'))
-      .catch((error) => Alert.alert('Error', error.message))
-  };
 
   return(
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} h={{ base: "400px", lg: "auto" }} flex={1}>    
@@ -114,15 +100,7 @@ export function Register({navigation}){
               <Button mt="4" colorScheme="warmGray" borderRadius={50} onPress={handleRegister}>
                 Register
               </Button>
-              
-              <HStack mt="4" justifyContent="center" alignItems='center'>
-                <Text fontSize="sm" color="warmGray" _dark={{ color: "warmGray.200" }}>
-                  Register with Google:{" "}
-                </Text>
-                <Button onPress={handleRegisterWithGoogle} size="sm" py={3} variant="ghost" >
-                  <Icon as={Ionicons} name='logo-google' color="blue.500" size={5}/>
-                </Button>      
-              </HStack>
+            
               <Link onPress={()=> navigation.navigate('SignIn')} justifyContent='center' p={1} _text={{ color: "indigo.600", fontWeight: "medium", fontSize: "sm" }}>
                 back to Sign In
               </Link>

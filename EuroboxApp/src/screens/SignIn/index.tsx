@@ -3,13 +3,18 @@ import { Alert, Keyboard, Platform, TouchableWithoutFeedback } from 'react-nativ
 import { Box, Center, Heading, FormControl, VStack, Input, Link, Button, Text, HStack, Image, KeyboardAvoidingView } from 'native-base';
 import * as yup from 'yup';
 import auth from '@react-native-firebase/auth';
+import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
 const schema = yup.object().shape({
   email: yup.string().required('Inform your e-mail'),
   password: yup.string().required('Inform your password'),
 });
 
+GoogleSignin.configure({webClientId: "546038138219-3qpakj26tk2c9ktoisegqpfbjpe80so5.apps.googleusercontent.com"});
+
+
 export function SignIn({navigation}){
+  
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -42,6 +47,17 @@ export function SignIn({navigation}){
     //.finally(() =>  setLoading(false));
     // ai tem que logar na home page com o usuario cadastrado
     }
+  };
+
+  async function handleRegisterWithGoogle(){
+    const { idToken } = await GoogleSignin.signIn();
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+    // Sign-in the user with the credential
+    return auth()
+      .signInWithCredential(googleCredential)
+      .then(() => navigation.navigate('Home'))
+      .catch((error) => Alert.alert('Error', error.message))
   };
 
   return(
@@ -92,6 +108,13 @@ export function SignIn({navigation}){
               <Button mt="2" colorScheme="warmGray" borderRadius={50} onPress={handleSignIn}>
                 Sign in
               </Button>
+
+              <GoogleSigninButton
+                style={{alignSelf:'center', width:275, height:45,}}
+                size={GoogleSigninButton.Size.Wide}
+                color={GoogleSigninButton.Color.Light}
+                onPress={(handleRegisterWithGoogle)}
+              />
               
               <HStack mt="6" justifyContent="center">
                 <Text fontSize="sm" color="warmGray" _dark={{ color: "warmGray.200" }}>
