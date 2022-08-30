@@ -12,12 +12,20 @@ const { Navigator, Screen } = createNativeStackNavigator();
 
 export function Routes() {
   
-  const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState(null);
+
+  function onAuthStateChanged(user: FirebaseAuthTypes.User) {
+    setUser(user);
+    if (initializing) setInitializing(false);
+  }
 
   useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(setUser);
-    return subscriber; // unsubscribe on unmount
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber;
   }, []);
+
+  if (initializing) return null;
   
   return (
     <NavigationContainer>

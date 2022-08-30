@@ -1,24 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Keyboard, Platform, TouchableWithoutFeedback } from "react-native";
-import { Box, Button, Center, KeyboardAvoidingView } from 'native-base';
+import { KeyboardAvoidingView } from 'native-base';
 
-import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import { Book } from "../Book";
+import { Trips } from "../Trips";
 
-export function Home({navigation}) {
+const { Navigator, Screen } = createBottomTabNavigator();
 
-  function signOut(){
-    auth().signOut()
-    .then(navigation.navigate('SignIn'))
-  };
+export function Home() {
 
-  const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
-
-  useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(setUser);
-    return subscriber; // unsubscribe on unmount
-  }, []);
-  
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -26,15 +19,32 @@ export function Home({navigation}) {
       flex={1}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <Center w="100%" flex={1}>
-          <Box safeArea p="2" py="8" w="90%" maxW="290">
-            Home Page of {user.phoneNumber}
-          </Box>
-          <Button mt="2" colorScheme="warmGray" borderRadius={50} onPress={signOut}>
-            Sign out
-          </Button>
-        </Center>
+        
+          <Navigator 
+            initialRouteName='Game'
+            screenOptions={{
+              headerShown: false, 
+              tabBarIconStyle:{display:'none'},
+              tabBarLabelStyle:{position:'absolute', top:0, fontSize:16, padding:5}
+          }}>
+            <Screen name='Book' component={Book} />
+            <Screen name='Trips' component={Trips} />
+          </Navigator>
+        
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
-}
+};
+
+const menuTheme = {
+  dark: false,
+  documentTitle: false,
+  colors: {
+    primary: 'rgb(255,255,255)',
+    background: 'rgb(68,68,68)',
+    card: 'rgb(68,68,68)',
+    text: 'rgb(255,255,255)',
+    border: 'rgb(255,255,255)',
+    notification: 'rgb(255,0,0)',
+  }
+};

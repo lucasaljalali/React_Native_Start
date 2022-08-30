@@ -9,7 +9,7 @@ export function SignIn({navigation}){
   const [phoneNumber, setPhoneNumber] = useState(null);
   const [confirm, setConfirm] = useState(null);
   const [code, setCode] = useState('');
-
+  
   async function signInWithPhoneNumber(phoneNumber) {
     if (!phoneNumber) { 
       Alert.alert('Phone Number', 'Please enter your phone number.')
