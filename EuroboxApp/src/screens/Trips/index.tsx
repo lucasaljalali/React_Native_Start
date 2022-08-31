@@ -5,10 +5,14 @@ import { Box, Button, Center, KeyboardAvoidingView } from 'native-base';
 import auth from '@react-native-firebase/auth';
 
 
-export function Trips() {
+export function Trips({ navigation }) {
 
   const currentUser = auth().currentUser;
 
+  function signOut(){
+    auth().signOut()
+    .then(navigation.navigate('SignIn'))
+  };
 
   return (
     <KeyboardAvoidingView
@@ -21,6 +25,10 @@ export function Trips() {
           <Box safeArea p="2" py="8" w="90%" maxW="290">
             Trips page of {currentUser.phoneNumber}
           </Box>
+          
+          <Button width='1/4' mt="2" colorScheme="warmGray" borderRadius={50} onPress={(signOut)}>
+            Sign out
+          </Button>
         </Center>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
