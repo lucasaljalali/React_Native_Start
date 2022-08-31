@@ -3,6 +3,7 @@ import { Keyboard, Platform, TouchableWithoutFeedback } from "react-native";
 import { Box, Button, Center, KeyboardAvoidingView } from 'native-base';
 
 import auth from '@react-native-firebase/auth';
+import { BookTransferForm } from "../../../components/bookTransferInput";
 
 
 export function Book({ navigation }) {
@@ -15,21 +16,13 @@ export function Book({ navigation }) {
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      h={{ base: "400px", lg: "auto" }}
-      flex={1}
-    >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <Center w="100%" flex={1}>
-          <Box safeArea p="2" py="8" w="90%" maxW="290">
-            Book Page of {currentUser.phoneNumber}
-          </Box>
-          <Button mt="2" colorScheme="warmGray" borderRadius={50} onPress={signOut}>
-            Sign out
-          </Button>
-        </Center>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+    <>
+      <BookTransferForm/>
+      <Center>  
+        <Button width='1/4' mt="2" colorScheme="warmGray" borderRadius={50} onPress={(signOut)}>
+          Sign out
+        </Button>
+      </Center>
+    </>  
   );
 };

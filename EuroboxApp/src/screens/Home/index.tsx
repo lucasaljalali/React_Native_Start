@@ -2,7 +2,6 @@ import React from "react";
 import { Keyboard, Platform, TouchableWithoutFeedback } from "react-native";
 import { KeyboardAvoidingView } from 'native-base';
 
-import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { Book } from "../Book";
