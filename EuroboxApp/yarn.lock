@@ -2252,6 +2252,11 @@
   resolved "https://registry.npmjs.org/@react-native-firebase/auth/-/auth-15.3.0.tgz"
   integrity sha512-8QIl9SR2tBRjS3D4dq1MXESDn2pYtAwGvhNp+bG1MQUa0NdS4aTfpdsDSF0vKMAngkl2ZJufaqiaVlY74DoD+w==
 
+"@react-native-firebase/firestore@^15.4.0":
+  version "15.4.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-15.4.0.tgz#9941cc2e256a11c1ea0d7614776fae54ed3a17d0"
+  integrity sha512-7Kiqn9c4uzQyURFQ4LGCZ4waeZb/hZb/IWl6MlpfkCtII9PnpdqbvQwEKKKg8RQMocP5sbw0qPsKEdYEYUNKhg==
+
 "@react-native-google-signin/google-signin@^8.0.0":
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/@react-native-google-signin/google-signin/-/google-signin-8.0.0.tgz#f8202c121b4df185eb165dc58b35544c643af25f"
@@ -8092,6 +8097,18 @@ mkdirp@^1.0.3, mkdirp@^1.0.4:
   version "1.0.4"
   resolved "https://registry.npmjs.org/mkdirp/-/mkdirp-1.0.4.tgz"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
+
+moment-timezone@^0.5.37:
+  version "0.5.37"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.37.tgz#adf97f719c4e458fdb12e2b4e87b8bec9f4eef1e"
+  integrity sha512-uEDzDNFhfaywRl+vwXxffjjq1q0Vzr+fcQpQ1bU0kbzorfS7zVtZnCnGc8mhWmF39d4g4YriF6kwA75mJKE/Zg==
+  dependencies:
+    moment ">= 2.9.0"
+
+"moment@>= 2.9.0":
+  version "2.29.4"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
+  integrity sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==
 
 move-concurrently@^1.0.1:
   version "1.0.1"

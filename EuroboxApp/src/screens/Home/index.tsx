@@ -20,7 +20,7 @@ export function Home() {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         
           <Navigator 
-            initialRouteName='Game'
+            initialRouteName={'Book'}
             screenOptions={{
               headerShown: false, 
               tabBarIconStyle:{display:'none'},

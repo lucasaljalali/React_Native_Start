@@ -1,15 +1,18 @@
-import React, { useReducer, useState } from "react";
-import { Keyboard, Platform, TouchableWithoutFeedback } from "react-native";
-import { Box, Button, Center, CheckIcon, FormControl, Heading, HStack, Image, Input, KeyboardAvoidingView, Pressable, Select, Stack, VStack } from 'native-base';
+import React, { useState } from "react";
+import { Alert, Keyboard, Platform, TouchableWithoutFeedback } from "react-native";
+import { Box, Button, Center, CheckIcon, FormControl, Heading, HStack, Input, KeyboardAvoidingView, Pressable, Select, Stack, VStack } from 'native-base';
 import { AntDesign } from '@expo/vector-icons';
+import DatePicker from "react-native-date-picker";
+import moment from 'moment-timezone';
 
 import auth from '@react-native-firebase/auth';
-import DatePicker from "react-native-date-picker";
+import firestore from '@react-native-firebase/firestore';
 
 
 export function BookTransferForm() {
 
   const currentUser = auth().currentUser;
+  const userPhone = currentUser.phoneNumber;
 
   const [name, setName] = useState('');
   const [flight, setFlight] = useState('');
@@ -22,9 +25,26 @@ export function BookTransferForm() {
   const [arriving, setArriving] = useState(true);
   const [open, setOpen] = useState(false);
 
+  moment.tz.setDefault('Europe/Lisbon');
 
   function handleBookTransfer(){
-
+    firestore()
+    .collection('books')
+    .add({
+      date,
+      userPhone,
+      name,
+      flight,
+      arriving,
+      airport,
+      address,
+      passengers,
+      luggages,
+      status: 'open',
+      created_at: firestore.FieldValue.serverTimestamp()
+    })
+    .then(() => Alert.alert('Yeah!', 'Transfer successfully booked!'))
+    .catch((error) => Alert.alert(error))
   };
 
   function onCancel() {
@@ -36,7 +56,7 @@ export function BookTransferForm() {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <Center w="100%" flex={1}>
           <Box safeArea p="2" py="8" w="90%" maxW="290">
-          <HStack alignItems={'center'} space={3}>
+          <HStack alignItems={'center'}>
                 <VStack justifyContent={'center'}>
                   <Heading size="lg" fontWeight="600" color="coolGray.800" _dark={{ color: "warmGray.50" }}>
                     Transfer
@@ -46,14 +66,29 @@ export function BookTransferForm() {
                   </Heading>
                 </VStack>  
             </HStack> 
+
+            <Box w='100%' alignItems='center' my={2}>
+                <Button variant="outline" h='16' w='100%' colorScheme="warmGray" size='md' borderRadius={50} borderWidth={2} onPress={() => setOpen(!open)}>
+                  {'Date: '+ date.toDateString() + '\n' + 'Time: '+ date.toLocaleTimeString()}
+                </Button>
+                <DatePicker
+                  style={{width: 250}}
+                  modal={!open}
+                  mode='datetime'
+                  date={date}
+                  onDateChange={(value) => setDate(value)}
+                  locale='en'
+                  minuteInterval={5}
+                />
+              </Box>
             
-            <VStack space={3} mt="5">
+            <VStack space={3}>
               <FormControl>
                 <Input
                   h='10'
                   isReadOnly={true} 
                   variant="rounded"
-                  value={currentUser.phoneNumber || ''}
+                  value={userPhone || ''}
                 />
                 <FormControl.ErrorMessage>invalid phone number</FormControl.ErrorMessage>
               </FormControl>
@@ -145,23 +180,8 @@ export function BookTransferForm() {
                     onChangeText={(text)=>setLuggages(text)}
                   />
               </HStack>
-
-              <Box w='100%' alignItems='center'>
-                <Button variant="outline" h='16' w='100%' colorScheme="warmGray" size='md' borderRadius={50} borderWidth={2} onPress={() => setOpen(!open)}>
-                  {'Date: '+ date.toDateString() + '\n' + 'Time: '+ date.toLocaleTimeString()}
-                </Button>
-                <DatePicker
-                  style={{width: 250}}
-                  modal={!open}
-                  mode='datetime'
-                  date={date}
-                  onDateChange={(value) => setDate(value)}
-                  locale='en'
-                  minuteInterval={5}
-                />
-              </Box>
               
-              <Button h='10' mt="2" colorScheme="warmGray" borderRadius={50} onPress={()=>console.log(date)}>
+              <Button h='10' mt="2" colorScheme="warmGray" borderRadius={50} onPress={handleBookTransfer}>
                 Book now
               </Button>
               

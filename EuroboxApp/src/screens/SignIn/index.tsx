@@ -25,7 +25,7 @@ export function SignIn({navigation}){
     try {
       await confirm.confirm(code);
       return (
-        navigation.navigate('Home')
+        navigation.navigate('Book')
       )
     } catch (error) {
         Alert.alert('Error', error.message);
