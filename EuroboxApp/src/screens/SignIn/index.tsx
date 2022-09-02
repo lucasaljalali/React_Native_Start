@@ -64,7 +64,7 @@ export function SignIn(){
               />
               
               {!confirm ? 
-              <Button onPress={() => signInWithPhoneNumber(phoneNumber)} mt="2" colorScheme="warmGray" borderRadius={50}>
+              <Button onPress={() => signInWithPhoneNumber(phoneNumber)} mt="2" colorScheme="warmGray" borderRadius={50} shadow='1'>
                 Sign in
               </Button>
                 :
