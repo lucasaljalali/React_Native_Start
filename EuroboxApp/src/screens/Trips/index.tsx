@@ -5,7 +5,6 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 import firestore from "@react-native-firebase/firestore";
 import auth from '@react-native-firebase/auth';
-import { ItemClick } from "native-base/lib/typescript/components/composites/Typeahead/useTypeahead/types";
 
 export type BookProps = {
   id: string;
@@ -27,10 +26,6 @@ export function Trips() {
   const [loading, setLoading] = useState(true);
   const [books, setBooks] = useState<BookProps[]>([]);
   const userPhone = auth().currentUser.phoneNumber;
-
-  function signOut(){
-    auth().signOut()
-  };
 
   useEffect(() => {
     const subscribe = firestore()
