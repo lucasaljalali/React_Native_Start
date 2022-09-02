@@ -1,19 +1,21 @@
-import React, { useState} from 'react';
-import { Alert, Keyboard, Platform, TouchableWithoutFeedback} from 'react-native';
+import React, { useState , useRef } from 'react';
+import { Alert, Keyboard, Platform, StyleSheet, TouchableWithoutFeedback} from 'react-native';
 import { Box, Center, Heading, FormControl, VStack, Input, Button, HStack, Image, KeyboardAvoidingView, } from 'native-base';
+import PhoneInput from 'react-native-phone-number-input';
 import auth from '@react-native-firebase/auth';
 
 
-export function SignIn({navigation}){
+export function SignIn(){
   
   const [phoneNumber, setPhoneNumber] = useState(null);
+  const phoneInput = useRef(null);
   const [confirm, setConfirm] = useState(null);
   const [code, setCode] = useState('');
   
-  async function signInWithPhoneNumber(phoneNumber) {
+  async function signInWithPhoneNumber(phoneNumber: string) {
     if (!phoneNumber) { 
       Alert.alert('Phone Number', 'Please enter your phone number.')
-    } else if (phoneNumber.length < 6) {
+    } else if (phoneNumber.length < 9) {
       Alert.alert('Phone Number', 'Please check your phone number.')
     } else {
         const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
@@ -24,9 +26,6 @@ export function SignIn({navigation}){
   async function confirmCode() {
     try {
       await confirm.confirm(code);
-      return (
-        navigation.navigate('Book')
-      )
     } catch (error) {
         Alert.alert('Error', error.message);
         setConfirm(null);
@@ -39,9 +38,9 @@ export function SignIn({navigation}){
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <Center w="100%" flex={1}>
           <Box safeArea p="2" py="8" w="90%" maxW="290">
-          <HStack alignItems={'center'} space={3}>
+            <HStack alignItems={'center'} justifyContent={'center'} space={3}>
               <Image source={require('../../../assets/logo.png')} size={70} alt={'Eurobox logo'}/>
-                <VStack justifyContent={'center'}>
+                <VStack justifyContent={'center'} pr='8'>
                   <Heading size="lg" fontWeight="600" color="coolGray.800" _dark={{ color: "warmGray.50" }}>
                     Welcome
                   </Heading>
@@ -52,28 +51,26 @@ export function SignIn({navigation}){
             </HStack> 
             
             <VStack space={3} mt="5">
-              <FormControl>
-                <FormControl.Label>Phone</FormControl.Label>
-                <Input
-                  placeholder='+000 000000000' 
-                  autoCapitalize='none' 
-                  autoCorrect={false} 
-                  textContentType={'telephoneNumber'} 
-                  variant="rounded"
-                  value={phoneNumber}
-                  onChangeText={phoneNumber => setPhoneNumber(phoneNumber)}
-                />
-                <FormControl.ErrorMessage>invalid phone number</FormControl.ErrorMessage>
-              </FormControl>
+              <PhoneInput
+                ref={phoneInput}
+                defaultValue={phoneNumber}
+                defaultCode="PT"
+                layout="first"
+                withShadow
+                autoFocus
+                containerStyle={{width: '100%', height: 50, borderRadius: 50}}
+                textContainerStyle={{paddingVertical: 0, borderTopRightRadius: 50, borderBottomRightRadius: 50}}
+                onChangeFormattedText={text => setPhoneNumber(text)}
+              />
               
               {!confirm ? 
-              <Button mt="2" colorScheme="warmGray" borderRadius={50} onPress={() => signInWithPhoneNumber(phoneNumber)}>
+              <Button onPress={() => signInWithPhoneNumber(phoneNumber)} mt="2" colorScheme="warmGray" borderRadius={50}>
                 Sign in
               </Button>
                 :
               <FormControl>
-                <Input value={code} onChangeText={text => setCode(text)} />
-                <Button onPress={() => confirmCode()}>
+                <Input value={code} onChangeText={text => setCode(text)} variant="rounded" textAlign='center' size='lg' autoFocus/>
+                <Button onPress={() => confirmCode()} borderRadius={50} w='1/2' alignSelf='center' mt='5'>
                   Confirm Code 
                 </Button>  
               </FormControl>
