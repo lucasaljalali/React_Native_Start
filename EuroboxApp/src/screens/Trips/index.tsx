@@ -44,7 +44,11 @@ export function Trips() {
   }, []);
 
   if (loading) {
-    return <ActivityIndicator />;
+    return (
+      <Center w="100%" flex={1}>
+        <ActivityIndicator size='large'/>
+      </Center>
+    )
   };
 
   function handleWhatsApp(){
@@ -69,7 +73,7 @@ export function Trips() {
             <FlatList data={books} renderItem={({item}) => 
               {if (item.userPhone === userPhone){
                 return( 
-              <Box w='98%' flex='1' bg={item.arriving ? 'warmGray.200' : 'warmGray.100'} shadow='3' h='150' borderRadius='20' mb='2' justifyContent='center' alignSelf='center'>
+              <Box w='98%' flex='1' bg={item.status === 'open' ? 'warmGray.200' : 'warmGray.400'} shadow='3' h='150' borderRadius='20' mb='2' justifyContent='center' alignSelf='center'>
                 <HStack space='2' justifyContent="space-between" p='2'>
                   <VStack w='15%' alignItems='center' justifyContent='space-between'>
                     <Avatar size="48px" source={{uri:'https://github.com/lucasaljalali.png'}} />
@@ -92,7 +96,7 @@ export function Trips() {
                     </Text>
                     <HStack>
                       {item.arriving ?
-                      <Box bg='success.600' borderRadius='5' px='1' mr='1'>  
+                      <Box bg={item.status === 'open' ? 'success.600' : 'warmGray.300'} borderRadius='5' px='1' mr='1'>  
                         <Text fontSize="xs" color="warmGray.800">{'Flight: ' + item.flight}</Text>
                       </Box>
                       : ''}

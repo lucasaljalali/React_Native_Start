@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Alert, Keyboard, Platform, TouchableWithoutFeedback } from "react-native";
+import { ActivityIndicator, Alert, Keyboard, Platform, TouchableWithoutFeedback } from "react-native";
 import { Box, Button, Center, CheckIcon, FormControl, Heading, HStack, Input, KeyboardAvoidingView, Pressable, Select, Stack, VStack } from 'native-base';
 import { AntDesign } from '@expo/vector-icons';
 import DatePicker from "react-native-date-picker";
@@ -12,6 +12,7 @@ import firestore from '@react-native-firebase/firestore';
 export function Book() {
 
   const userPhone = auth().currentUser.phoneNumber;
+  const [loading, setLoading] = useState(false);
 
   const [name, setName] = useState('');
   const [flight, setFlight] = useState('');
@@ -44,6 +45,7 @@ export function Book() {
     } else if (!luggages) {
       Alert.alert('Luggages', 'Please insert the № of luggages.')
     } else {
+    setLoading(true)
     firestore()
     .collection('books')
     .add({
@@ -60,6 +62,7 @@ export function Book() {
       created_at: firestore.FieldValue.serverTimestamp()
     })
     .then(() => Alert.alert('Yeah!', 'Transfer successfully booked!'))
+    .then(() => setLoading(false))
     .catch((error) => Alert.alert(error))
     }
   };
@@ -70,11 +73,19 @@ export function Book() {
   };
 
 
+  if (loading) {
+    return (
+      <Center w="100%" flex={1}>
+        <ActivityIndicator size='large'/>
+      </Center>
+    )
+  };
+
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} h={{ base: "400px", lg: "auto" }} flex={1}>    
       <TouchableWithoutFeedback accessible={false} onPress={dismiss}>
         <Center w="100%" flex={1}>
-          <Box safeArea p="2" py="8" w="90%" maxW="290">
+          <Box safeArea p="2" py="8" w="90%" maxW="500">
             <VStack justifyContent={'center'} ml='2'>
               <Heading size="lg" fontWeight="600" color="coolGray.800" _dark={{ color: "warmGray.50" }}>
                 Transfer
@@ -111,7 +122,7 @@ export function Book() {
                     {'Date: '+ date.toDateString() + '\n' + 'Time: '+ date.toLocaleTimeString()}
                 </Button>
                 <DatePicker
-                  style={{width: 250}}
+                  style={{ maxWidth: 500 }}
                   modal={!open}
                   mode='datetime'
                   date={date}
@@ -184,7 +195,7 @@ export function Book() {
                     shadow='1'
                     placeholder="Full address"
                     textContentType='fullStreetAddress'
-                    autoCapitalize='characters'
+                    autoCapitalize='words'
                     autoCorrect={false}
                     variant="rounded"
                     onChangeText={(text)=>setAddress(text)}

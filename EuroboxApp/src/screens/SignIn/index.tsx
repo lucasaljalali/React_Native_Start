@@ -1,5 +1,5 @@
 import React, { useState , useRef } from 'react';
-import { Alert, Keyboard, Platform, StyleSheet, TouchableWithoutFeedback} from 'react-native';
+import { ActivityIndicator, Alert, Keyboard, Platform, StyleSheet, TouchableWithoutFeedback} from 'react-native';
 import { Box, Center, Heading, FormControl, VStack, Input, Button, HStack, Image, KeyboardAvoidingView, } from 'native-base';
 import PhoneInput from 'react-native-phone-number-input';
 import auth from '@react-native-firebase/auth';
@@ -7,6 +7,7 @@ import auth from '@react-native-firebase/auth';
 
 export function SignIn(){
   
+  const [loading, setLoading] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState(null);
   const phoneInput = useRef(null);
   const [confirm, setConfirm] = useState(null);
@@ -18,12 +19,15 @@ export function SignIn(){
     } else if (phoneNumber.length < 9) {
       Alert.alert('Phone Number', 'Please check your phone number.')
     } else {
+        setLoading(true);
         const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
         setConfirm(confirmation);
+        setLoading(false);
       }
   };
 
   async function confirmCode() {
+    setLoading(true);
     try {
       await confirm.confirm(code);
     } catch (error) {
@@ -32,13 +36,20 @@ export function SignIn(){
       }
   };
 
+  if (loading) {
+    return (
+      <Center w="100%" flex={1}>
+        <ActivityIndicator size='large'/>
+      </Center>
+    )
+  };
 
   return(
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} h={{ base: "400px", lg: "auto" }} flex={1}>    
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <Center w="100%" flex={1}>
-          <Box safeArea p="2" py="8" w="90%" maxW="290">
-            <HStack alignItems={'center'} justifyContent={'center'} space={3}>
+        <Center w="100%" flex='1'>
+          <Box safeArea p="2" py="8" w="90%" maxW="290" alignItems='center' justifyContent='center'>
+            <HStack space='3'>
               <Image source={require('../../../assets/logo.png')} size={70} alt={'Eurobox logo'}/>
                 <VStack justifyContent={'center'} pr='8'>
                   <Heading size="lg" fontWeight="600" color="coolGray.800" _dark={{ color: "warmGray.50" }}>
@@ -50,7 +61,7 @@ export function SignIn(){
                 </VStack>  
             </HStack> 
             
-            <VStack space={3} mt="5">
+            <VStack w='500' space='3' mt="5">
               <PhoneInput
                 ref={phoneInput}
                 defaultValue={phoneNumber}
